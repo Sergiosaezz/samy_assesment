@@ -1,4 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
+import { GetImagesResult, GetImagesVariables } from "./interfaces";
+import { Loader } from "./components/Loader";
 
 const GET_IMAGES = gql`
   query GetImages($title: String, $first: Int, $after: String) {
@@ -8,6 +10,8 @@ const GET_IMAGES = gql`
           id
           title
           picture
+          liked
+          likesCount
         }
       }
       pageInfo {
@@ -19,15 +23,31 @@ const GET_IMAGES = gql`
 `;
 
 function App() {
-  const { loading, error, data, fetchMore } = useQuery(GET_IMAGES);
+  const { loading, error, data, fetchMore } = useQuery<
+    GetImagesResult,
+    GetImagesVariables
+  >(GET_IMAGES, { variables: { first: 30 } });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader></Loader>;
   if (error) return <p>Error: {error.message}</p>;
 
   const loadMore = () => {
-    if (data.images.pageInfo.hasNextPage) {
+    if (data?.images.pageInfo.hasNextPage) {
       fetchMore({
         variables: { after: data.images.pageInfo.endCursor },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          if (!fetchMoreResult) return previousResult;
+
+          return {
+            images: {
+              edges: [
+                ...previousResult.images.edges,
+                ...fetchMoreResult.images.edges,
+              ],
+              pageInfo: fetchMoreResult.images.pageInfo,
+            },
+          };
+        },
       });
     }
   };
@@ -39,15 +59,17 @@ function App() {
       </h1>
       <div>
         <ul className="flex flex-wrap gap-3">
-          {data.images.edges.map(({ node }) => (
+          {data?.images.edges.map(({ node }) => (
             <li className="flex flex-col items-center" key={node.id}>
               <img src={node.picture} alt={node.title} />
               <p>{node.title}</p>
             </li>
           ))}
         </ul>
-        {data.images.pageInfo.hasNextPage && (
-          <button onClick={loadMore}>Load More</button>
+        {data?.images.pageInfo.hasNextPage && (
+          <button className="p-2" type="button" onClick={loadMore}>
+            Load More
+          </button>
         )}
       </div>
     </>
