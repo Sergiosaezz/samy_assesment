@@ -4,16 +4,20 @@ export interface GetImagesVariables {
   after?: string;
 }
 
+export interface ImageItem {
+  id: string;
+  title: string;
+  picture: string;
+  liked: boolean;
+  likesCount: number;
+  price: number;
+  author: string;
+}
+
 export interface GetImagesResult {
   images: {
     edges: {
-      node: {
-        id: string;
-        title: string;
-        picture: string;
-        liked: boolean;
-        likesCount: number;
-      };
+      node: ImageItem;
     }[];
     pageInfo: {
       hasNextPage: boolean;
