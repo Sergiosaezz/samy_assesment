@@ -6,7 +6,7 @@ type Props = {
 };
 
 export const CardList = ({ list }: Props) => (
-  <ul className="flex flex-wrap gap-3">
+  <ul className="flex flex-wrap  justify-between">
     {list?.map(({ node }) => (
       <Card item={node} />
     ))}

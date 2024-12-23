@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className="px-24 bg-gray-100 pt-14">
         <CardList list={images?.edges} />
         {images?.pageInfo.hasNextPage && (
           <button className="p-2" type="button" onClick={loadMore}>
