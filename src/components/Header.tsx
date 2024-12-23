@@ -1,5 +1,5 @@
 export const Header = () => (
-  <header className="px-9 py-9 md:px-24 flex gap-3 flex-col items-start md:items-center md:flex-row justify-between">
+  <header className="px-9 py-5 md:py-9 md:px-24 flex gap-3 flex-col items-start md:items-center md:flex-row justify-between">
     <img src="logo.svg" alt="samy logo" className="h-3.5 md:h-6" />
     <div className="relative self-center">
       <input
