@@ -1,5 +1,7 @@
 import { ImageItem } from "../interfaces";
+import { LikeIcon } from "./LikeIcon";
 import { PriceTag } from "./PriceTag";
+import { ShareIcon } from "./ShareIcon";
 
 type Props = {
   item: ImageItem;
@@ -14,6 +16,16 @@ export const Card = ({ item }: Props) => (
         alt={item.title}
       />
       <PriceTag price={item.price} />
+      <div className="absolute right-0 bottom-0 flex flex-col gap-2 justify-center items-center p-5">
+        <div className="flex flex-col  gap-1 text-sm text-white justify-center items-center">
+          <LikeIcon />
+          <span>{item.likesCount}</span>
+        </div>
+        <div className="flex flex-col gap-1 text-sm text-white justify-center items-center">
+          <ShareIcon color="white" />
+          <span>0</span>
+        </div>
+      </div>
     </div>
     <div className="p-4 flex-1 flex flex-col items-center justify-center">
       <h2 className="text-lg text-center">{item.title.toUpperCase()}</h2>
@@ -21,14 +33,14 @@ export const Card = ({ item }: Props) => (
         <span className="text-side-gray">by</span> {item.author}
       </p>
     </div>
-    <div className="lg:hidden flex justify-center h-16 w-full border-box">
+    <div className="lg:hidden flex justify-center h-16 w-full ">
       <div className="flex justify-center items-center gap-1 w-full text-sm border bg-gray-100 ">
         <span>{item.likesCount}</span>
-        <img src="likes-icon.svg" alt="likes icon" />
+        <LikeIcon />
       </div>
       <div className="flex justify-center items-center gap-1 w-full text-sm border bg-gray-100">
         <span>0</span>
-        <img src="share-icon.svg" alt="share icon" />
+        <ShareIcon />
       </div>
     </div>
   </div>

@@ -19,7 +19,7 @@ export const CardList = ({ list, loadMore, hasMore }: Props) => (
   >
     <ul className="flex flex-wrap justify-center gap-5 lg:justify-between">
       {list.map(({ node }) => (
-        <Card item={node} />
+        <Card item={node} key={node.id} />
       ))}
     </ul>
   </InfiniteScroll>
