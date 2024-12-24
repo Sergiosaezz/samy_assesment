@@ -13,7 +13,7 @@ export const Header = ({ handleFilterByTitle }: Props) => {
     [handleFilterByTitle]
   );
 
-  const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTitle = e.target.value;
     setTitle(newTitle);
     debouncedFilterByTitle(newTitle);
@@ -36,7 +36,7 @@ export const Header = ({ handleFilterByTitle }: Props) => {
           type="text"
           placeholder="You're looking for something?"
           className="pl-10 py-2 w-64 h-8 pr-4 rounded-2xl bg-[#F2F2F2] placeholder-[#A1A1A1] text-sm"
-          onChange={onTitleChange}
+          onChange={handleInputChange}
           value={title}
         />
         <img
