@@ -13,12 +13,11 @@ function App() {
     <>
       <Header />
       <main className="px-9 md:px-24 bg-gray-100 pt-9 md:pt-14">
-        <CardList list={images?.edges} />
-        {images?.pageInfo.hasNextPage && (
-          <button className="p-2" type="button" onClick={loadMore}>
-            Load More
-          </button>
-        )}
+        <CardList
+          list={images?.edges ?? []}
+          loadMore={loadMore}
+          hasMore={!!images?.pageInfo.hasNextPage}
+        />
       </main>
     </>
   );
