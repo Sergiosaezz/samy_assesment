@@ -47,13 +47,10 @@ export const useImages = (initialVariables: GetImagesVariables) => {
   const [likeImageMutation] = useMutation(LIKE_IMAGE);
 
   const likeImage = async (imageId: ImageItem["id"]) => {
-    const clientMutationId = Date.now().toString();
-
     try {
       await likeImageMutation({
         variables: {
           input: {
-            clientMutationId,
             imageId,
           },
         },
