@@ -13,27 +13,27 @@ export const useImages = (initialVariables: GetImagesVariables) => {
   });
 
   const loadMore = () => {
-    if (data?.images.pageInfo.hasNextPage) {
-      fetchMore({
-        variables: {
-          after: data.images.pageInfo.endCursor,
-          title,
-        },
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return previousResult;
+    if (!data?.images.pageInfo.hasNextPage) return;
 
-          const updatedImages = {
-            edges: [
-              ...previousResult.images.edges,
-              ...fetchMoreResult.images.edges,
-            ],
-            pageInfo: fetchMoreResult.images.pageInfo,
-          };
+    fetchMore({
+      variables: {
+        after: data.images.pageInfo.endCursor,
+        title,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return previousResult;
 
-          return { images: updatedImages };
-        },
-      });
-    }
+        const updatedImages = {
+          edges: [
+            ...previousResult.images.edges,
+            ...fetchMoreResult.images.edges,
+          ],
+          pageInfo: fetchMoreResult.images.pageInfo,
+        };
+
+        return { images: updatedImages };
+      },
+    });
   };
 
   const filterByTitle = (newTitle: string) => {
