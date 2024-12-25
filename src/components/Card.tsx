@@ -5,6 +5,7 @@ import { ShareIcon } from "./ShareIcon";
 
 type Props = {
   item: ImageItem;
+  //FIXME: avoid prop drilling
   handleLike: (imageId: ImageItem["id"]) => Promise<void>;
 };
 
