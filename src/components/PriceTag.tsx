@@ -1,4 +1,4 @@
-import { useCurrencyFormatter } from "../hooks/usePrice";
+import { useCurrencyFormatter } from "../hooks/usePrice/usePrice";
 
 type Props = {
   price: number;

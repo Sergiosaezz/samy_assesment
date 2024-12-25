@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { GetImagesVariables, GetImagesResult, ImageItem } from "../interfaces";
-import { GET_IMAGES, LIKE_IMAGE } from "../api/images";
+import {
+  GetImagesVariables,
+  GetImagesResult,
+  ImageItem,
+} from "../../interfaces";
+import { GET_IMAGES, LIKE_IMAGE } from "../../api/images";
 
 export const useImages = (initialVariables: GetImagesVariables) => {
   const [title, setTitle] = useState<string>();

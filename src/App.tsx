@@ -1,7 +1,7 @@
 import { Loader } from "./components/Loader";
 import { CardList } from "./components/CardList";
 import { Header } from "./components/Header";
-import { useImages } from "./hooks/useImages";
+import { useImages } from "./hooks/useImages/useImages";
 
 function App() {
   const { loading, error, images, loadMore, filterByTitle, likeImage } =
