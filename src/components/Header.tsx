@@ -1,24 +1,8 @@
-import { useState, useCallback } from "react";
-import { debounce } from "../utils";
-
 type Props = {
   handleFilterByTitle: (title: string) => void;
 };
 
 export const Header = ({ handleFilterByTitle }: Props) => {
-  const [title, setTitle] = useState("");
-
-  const debouncedFilterByTitle = useCallback(
-    debounce(handleFilterByTitle, 500),
-    [handleFilterByTitle]
-  );
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTitle = e.target.value;
-    setTitle(newTitle);
-    debouncedFilterByTitle(newTitle);
-  };
-
   const handleLogoClick = () => {
     window.location.reload();
   };
@@ -36,8 +20,9 @@ export const Header = ({ handleFilterByTitle }: Props) => {
           type="text"
           placeholder="You're looking for something?"
           className="pl-10 py-2 w-64 h-8 pr-4 rounded-2xl bg-[#F2F2F2] placeholder-[#A1A1A1] text-sm"
-          onChange={handleInputChange}
-          value={title}
+          onChange={(e) => {
+            handleFilterByTitle(e.target.value);
+          }}
           data-test="title-filter"
         />
         <img
