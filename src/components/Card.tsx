@@ -17,7 +17,7 @@ export const Card = ({ item, handleLike }: Props) => (
         alt={item.title}
       />
       <PriceTag price={item.price} />
-      <div className="hidden sm:flex absolute right-0 bottom-0 flex flex-col gap-2 justify-center items-center p-5">
+      <div className="hidden lg:flex absolute right-0 bottom-0 flex flex-col gap-2 justify-center items-center p-5">
         <div className="flex flex-col  gap-1 text-sm text-white justify-center items-center">
           <span onClick={() => handleLike(item.id)}>
             <LikeIcon isLiked={item.liked} />
