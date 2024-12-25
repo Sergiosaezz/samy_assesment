@@ -1,4 +1,5 @@
 import { ImageItem } from "../interfaces";
+import { LikeIcon } from "./LikeIcon";
 import { PriceTag } from "./PriceTag";
 import { ShareIcon } from "./ShareIcon";
 
@@ -19,19 +20,7 @@ export const Card = ({ item, handleLike }: Props) => (
       <div className="hidden sm:flex absolute right-0 bottom-0 flex flex-col gap-2 justify-center items-center p-5">
         <div className="flex flex-col  gap-1 text-sm text-white justify-center items-center">
           <span onClick={() => handleLike(item.id)}>
-            {item.liked ? (
-              <img
-                className="cursor-pointer"
-                src="filled-likes-icon.svg"
-                alt="likes icon filled"
-              />
-            ) : (
-              <img
-                className="cursor-pointer"
-                src="likes-icon.svg"
-                alt="likes icon"
-              />
-            )}
+            <LikeIcon isLiked={item.liked} />
           </span>
           <span>{item.likesCount}</span>
         </div>
@@ -51,19 +40,7 @@ export const Card = ({ item, handleLike }: Props) => (
       <div className="flex justify-center items-center gap-1 w-full text-sm border bg-gray-100 ">
         <span>{item.likesCount}</span>
         <span onClick={() => handleLike(item.id)}>
-          {item.liked ? (
-            <img
-              className="cursor-pointer"
-              src="filled-likes-icon.svg"
-              alt="likes icon filled"
-            />
-          ) : (
-            <img
-              className="cursor-pointer"
-              src="likes-icon.svg"
-              alt="likes icon"
-            />
-          )}
+          <LikeIcon isLiked={item.liked} />
         </span>
       </div>
       <div className="flex justify-center items-center gap-1 w-full text-sm border bg-gray-100">
