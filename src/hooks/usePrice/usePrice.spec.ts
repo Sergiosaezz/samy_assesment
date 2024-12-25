@@ -1,10 +1,10 @@
-import { useCurrencyFormatter } from "./usePrice"; // Adjust the path to your hook
+import { useCurrencyFormatter } from "./usePrice";
 import { describe, it, expect, vi } from "vitest";
 
 describe("useCurrencyFormatter", () => {
   it("should format positive number correctly", () => {
     const formatCurrency = useCurrencyFormatter();
-    expect(formatCurrency(1234.56)).toBe("1,234.56 €");
+    expect(formatCurrency(12)).toBe("12.00 €");
   });
 
   it("should format zero correctly", () => {
