@@ -18,12 +18,21 @@ export const Card = ({ item, handleLike }: Props) => (
       <PriceTag price={item.price} />
       <div className="hidden sm:flex absolute right-0 bottom-0 flex flex-col gap-2 justify-center items-center p-5">
         <div className="flex flex-col  gap-1 text-sm text-white justify-center items-center">
-          <img
-            onClick={() => handleLike(item.id)}
-            className="cursor-pointer"
-            src="likes-icon.svg"
-            alt="likes icon"
-          />
+          <span onClick={() => handleLike(item.id)}>
+            {item.liked ? (
+              <img
+                className="cursor-pointer"
+                src="filled-likes-icon.svg"
+                alt="likes icon filled"
+              />
+            ) : (
+              <img
+                className="cursor-pointer"
+                src="likes-icon.svg"
+                alt="likes icon"
+              />
+            )}
+          </span>
           <span>{item.likesCount}</span>
         </div>
         <div className="flex flex-col gap-1 text-sm text-white justify-center items-center">
@@ -41,12 +50,21 @@ export const Card = ({ item, handleLike }: Props) => (
     <div className="lg:hidden flex justify-center h-16 w-full ">
       <div className="flex justify-center items-center gap-1 w-full text-sm border bg-gray-100 ">
         <span>{item.likesCount}</span>
-        <img
-          onClick={() => handleLike(item.id)}
-          className="cursor-pointer"
-          src="likes-icon.svg"
-          alt="likes icon"
-        />
+        <span onClick={() => handleLike(item.id)}>
+          {item.liked ? (
+            <img
+              className="cursor-pointer"
+              src="filled-likes-icon.svg"
+              alt="likes icon filled"
+            />
+          ) : (
+            <img
+              className="cursor-pointer"
+              src="likes-icon.svg"
+              alt="likes icon"
+            />
+          )}
+        </span>
       </div>
       <div className="flex justify-center items-center gap-1 w-full text-sm border bg-gray-100">
         <span>0</span>
