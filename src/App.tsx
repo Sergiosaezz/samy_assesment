@@ -4,9 +4,10 @@ import { Header } from "./components/Header";
 import { useImages } from "./hooks/useImages";
 
 function App() {
-  const { loading, error, images, loadMore, filterByTitle } = useImages({
-    first: 30,
-  });
+  const { loading, error, images, loadMore, filterByTitle, likeImage } =
+    useImages({
+      first: 30,
+    });
 
   if (loading) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
@@ -19,6 +20,7 @@ function App() {
           list={images?.edges ?? []}
           loadMore={loadMore}
           hasMore={!!images?.pageInfo.hasNextPage}
+          handleLike={likeImage}
         />
       </main>
     </>

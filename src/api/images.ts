@@ -7,8 +7,8 @@ export const GET_IMAGES = gql`
         node {
           id
           title
-          picture
           liked
+          picture
           likesCount
           price
           author
@@ -17,6 +17,18 @@ export const GET_IMAGES = gql`
       pageInfo {
         hasNextPage
         endCursor
+      }
+    }
+  }
+`;
+
+export const LIKE_IMAGE = gql`
+  mutation LikeImage($input: LikeImageInput!) {
+    likeImage(input: $input) {
+      image {
+        id
+        liked
+        likesCount
       }
     }
   }

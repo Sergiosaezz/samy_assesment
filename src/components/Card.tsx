@@ -1,13 +1,13 @@
 import { ImageItem } from "../interfaces";
-import { LikeIcon } from "./LikeIcon";
 import { PriceTag } from "./PriceTag";
 import { ShareIcon } from "./ShareIcon";
 
 type Props = {
   item: ImageItem;
+  handleLike: (imageId: ImageItem["id"]) => Promise<void>;
 };
 
-export const Card = ({ item }: Props) => (
+export const Card = ({ item, handleLike }: Props) => (
   <div className="w-[328px] h-[509px] lg:w-[400px] lg:h-[460px] rounded overflow-hidden bg-gray-100 border border-card-border flex flex-col mb-10">
     <div className="h-[360px] w-full relative inline-block">
       <img
@@ -18,7 +18,12 @@ export const Card = ({ item }: Props) => (
       <PriceTag price={item.price} />
       <div className="hidden sm:flex absolute right-0 bottom-0 flex flex-col gap-2 justify-center items-center p-5">
         <div className="flex flex-col  gap-1 text-sm text-white justify-center items-center">
-          <LikeIcon />
+          <img
+            onClick={() => handleLike(item.id)}
+            className="cursor-pointer"
+            src="likes-icon.svg"
+            alt="likes icon"
+          />
           <span>{item.likesCount}</span>
         </div>
         <div className="flex flex-col gap-1 text-sm text-white justify-center items-center">
@@ -36,7 +41,12 @@ export const Card = ({ item }: Props) => (
     <div className="lg:hidden flex justify-center h-16 w-full ">
       <div className="flex justify-center items-center gap-1 w-full text-sm border bg-gray-100 ">
         <span>{item.likesCount}</span>
-        <LikeIcon />
+        <img
+          onClick={() => handleLike(item.id)}
+          className="cursor-pointer"
+          src="likes-icon.svg"
+          alt="likes icon"
+        />
       </div>
       <div className="flex justify-center items-center gap-1 w-full text-sm border bg-gray-100">
         <span>0</span>

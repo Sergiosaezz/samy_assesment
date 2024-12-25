@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useQuery } from "@apollo/client";
-import { GetImagesVariables, GetImagesResult } from "../interfaces";
-import { GET_IMAGES } from "../api/images";
+import { useMutation, useQuery } from "@apollo/client";
+import { GetImagesVariables, GetImagesResult, ImageItem } from "../interfaces";
+import { GET_IMAGES, LIKE_IMAGE } from "../api/images";
 
 export const useImages = (initialVariables: GetImagesVariables) => {
   const [title, setTitle] = useState<string>();
@@ -44,11 +44,30 @@ export const useImages = (initialVariables: GetImagesVariables) => {
     });
   };
 
+  const [likeImageMutation] = useMutation(LIKE_IMAGE);
+
+  const likeImage = async (imageId: ImageItem["id"]) => {
+    const clientMutationId = Date.now().toString();
+
+    try {
+      await likeImageMutation({
+        variables: {
+          input: {
+            clientMutationId,
+            imageId,
+          },
+        },
+      });
+    } catch (error) {
+      console.error("Error liking image:", error);
+    }
+  };
   return {
     loading,
     error,
     images: data?.images,
     loadMore,
     filterByTitle,
+    likeImage,
   };
 };
