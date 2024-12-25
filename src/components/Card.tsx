@@ -10,7 +10,10 @@ type Props = {
 };
 
 export const Card = ({ item, handleLike }: Props) => (
-  <div className="w-[328px] h-[509px] lg:w-[400px] lg:h-[460px] rounded overflow-hidden bg-gray-100 border border-card-border flex flex-col mb-10">
+  <div
+    className="w-[328px] h-[509px] lg:w-[400px] lg:h-[460px] rounded overflow-hidden bg-gray-100 border border-card-border flex flex-col mb-10"
+    data-test="image-card"
+  >
     <div className="h-[360px] w-full relative inline-block">
       <img
         className="w-full h-full object-cover mask-triangle"
@@ -19,11 +22,14 @@ export const Card = ({ item, handleLike }: Props) => (
       />
       <PriceTag price={item.price} />
       <div className="hidden lg:flex absolute right-0 bottom-0 flex flex-col gap-2 justify-center items-center p-5">
-        <div className="flex flex-col  gap-1 text-sm text-white justify-center items-center">
-          <span onClick={() => handleLike(item.id)}>
+        <div
+          className="flex flex-col  gap-1 text-sm text-white justify-center items-center"
+          data-test="like-container"
+        >
+          <span onClick={() => handleLike(item.id)} data-test="like-button">
             <LikeIcon isLiked={item.liked} />
           </span>
-          <span>{item.likesCount}</span>
+          <span data-test="likes-count">{item.likesCount}</span>
         </div>
         <div className="flex flex-col gap-1 text-sm text-white justify-center items-center">
           <ShareIcon color="white" />
@@ -39,8 +45,8 @@ export const Card = ({ item, handleLike }: Props) => (
     </div>
     <div className="lg:hidden flex justify-center h-16 w-full ">
       <div className="flex justify-center items-center gap-1 w-full text-sm border bg-gray-100 ">
-        <span>{item.likesCount}</span>
-        <span onClick={() => handleLike(item.id)}>
+        <span data-test="likes-count">{item.likesCount}</span>
+        <span onClick={() => handleLike(item.id)} data-test="like-button">
           <LikeIcon isLiked={item.liked} />
         </span>
       </div>

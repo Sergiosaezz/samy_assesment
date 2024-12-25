@@ -18,7 +18,10 @@ export const CardList = ({ list, loadMore, hasMore, handleLike }: Props) => (
     loader={<Loader />}
     style={{ overflow: "hidden" }}
   >
-    <ul className="flex flex-wrap justify-center gap-5 lg:justify-between">
+    <ul
+      className="flex flex-wrap justify-center gap-5 lg:justify-between"
+      data-test="image-list"
+    >
       {list.map(({ node }) => (
         <Card item={node} key={node.id} handleLike={handleLike} />
       ))}

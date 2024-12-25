@@ -38,6 +38,7 @@ export const Header = ({ handleFilterByTitle }: Props) => {
           className="pl-10 py-2 w-64 h-8 pr-4 rounded-2xl bg-[#F2F2F2] placeholder-[#A1A1A1] text-sm"
           onChange={handleInputChange}
           value={title}
+          data-test="title-filter"
         />
         <img
           src="search-icon.svg"
