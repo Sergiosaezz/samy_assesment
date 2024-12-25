@@ -1,8 +1,6 @@
 describe("Image Feed with Real GraphQL API", () => {
   beforeEach(() => {
-    cy.intercept("POST", "https://sandbox-api-test.samyroad.com/graphql").as(
-      "imageApi"
-    );
+    cy.intercept("POST", Cypress.env("VITE_API_URL")).as("imageApi");
     cy.visit("/");
     cy.wait("@imageApi");
   });
@@ -38,7 +36,6 @@ describe("Image Feed with Real GraphQL API", () => {
         cy.wrap($container).within(() => {
           cy.get('[data-test="like-button"]').click({ force: true });
           cy.wait("@imageApi");
-
           cy.get(
             isLiked ? '[data-test="like"]' : '[data-test="dislike"]'
           ).should("not.exist");

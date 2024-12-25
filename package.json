@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3000",
+    "dev": "vite",
     "test": "vitest",
-    "e2e": "cypress open",
+    "e2e": "cypress run",
+    "e2e:interactive": "cypress open",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"

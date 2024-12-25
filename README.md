@@ -1,50 +1,46 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a modern web application built with **React**, **TypeScript**, and **Vite**. It includes setups for both unit and end-to-end testing with **Vitest** and **Cypress**, respectively.
 
-Currently, two official plugins are available:
+## Technologies used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: A declarative and efficient JavaScript library for building user interfaces.
+- **TypeScript**: Adds static typing to JavaScript, improving code quality and developer experience.
+- **Vite**: A fast build tool that enhances development with features like Hot Module Replacement (HMR).
+- **Apollo Client**: A popular GraphQL client to manage data fetching and caching.
+- **Vitest**: A fast unit testing framework for JavaScript/TypeScript, used to write and run tests.
+- **Cypress**: A powerful testing framework for end-to-end testing of web applications.
 
-## Expanding the ESLint configuration
+## Project Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone this repository.
+2. Install dependencies:
 
-- Configure the top-level `parserOptions` property like this:
+   ```bash
+   npm install
+   ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Available Scripts
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- Run in development mode:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+  ```bash
+  npm run dev
+  ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Run unit tests (Vitest)
+  ```bash
+  npm run test
+  ```
+- Run e2e (Cypress)
+  ```bash
+  npm run e2e
+  ```
+- Open e2e interactive mode
+  ```bash
+  npm run e2e:interactive
+  ```
+- Build project
+  ```bash
+  npm run build
+  ```
