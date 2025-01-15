@@ -20,7 +20,7 @@ describe("Image Feed with Real GraphQL API", () => {
   it("should reset the list by clicking in the logo", () => {
     cy.get('[data-test="title-filter"]').type("123");
     cy.wait("@imageApi");
-    cy.get("[data-test='image-list']").children().should("have.length", 0);
+    cy.get("[data-test='image-list']").should("not.exist");
     cy.get("header > img").click({ force: true });
     cy.wait("@imageApi");
     cy.get("[data-test='image-list']")
